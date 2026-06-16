@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Lens uses the camera to scan documents.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Lens saves scanned pages to your Photos library when you choose Save Pages to Photos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Lens reads photos so you can import existing images as document pages.</string>
 	<key>UIApplicationSceneManifest</key>

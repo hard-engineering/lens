@@ -8,7 +8,7 @@ struct RootView: View {
 
     @State private var showScanner: Bool = false
     @State private var showImporter: Bool = false
-    @State private var didAutoPresentScanner: Bool = false
+    @State private var importerSession: UUID = UUID()
     @State private var permissionError: PermissionError?
 
     var body: some View {
@@ -35,7 +35,10 @@ struct RootView: View {
             )
             .ignoresSafeArea()
         }
-        .sheet(isPresented: $showImporter) {
+        .sheet(isPresented: $showImporter, onDismiss: { importerSession = UUID() }) {
+            // .id() forces a fresh view identity per presentation so the
+            // GalleryImportFlow's @State (providers, currentIndex, etc.) is
+            // not preserved across sheet present/dismiss cycles.
             GalleryImportFlow(
                 onComplete: { images in
                     showImporter = false
@@ -43,6 +46,7 @@ struct RootView: View {
                 },
                 onCancel: { showImporter = false }
             )
+            .id(importerSession)
         }
         .alert(item: $permissionError) { error in
             Alert(
@@ -55,12 +59,6 @@ struct RootView: View {
                 },
                 secondaryButton: .cancel()
             )
-        }
-        .task {
-            if !didAutoPresentScanner {
-                didAutoPresentScanner = true
-                await requestCameraThenPresent()
-            }
         }
     }
 

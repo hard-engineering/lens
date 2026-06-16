@@ -8,20 +8,47 @@ import CoreImage.CIFilterBuiltins
 ///   estimate of local background illumination.
 ///   Stage 2 — Sauvola adaptive threshold: t = mean * (1 + k * (sigma/R - 1))
 ///
-/// Both stages run as CoreImage filter chains. The Sauvola step uses a CIColorKernel
-/// that samples three pre-computed images at the same coordinate: the normalized
-/// luminance, the local mean, and the local mean-of-squares (used to derive stddev).
+/// All math uses explicit CIColorKernels in normalized 0..1 luminance space —
+/// blend-mode filters (CIDivideBlendMode etc.) work in gamma-corrected sRGB and
+/// were producing all-white output when chained.
+///
+/// Thread safety: kernels are initialized eagerly (no `lazy var`, which is not
+/// thread-safe under concurrent first access) and `apply` is serialized via an
+/// internal lock. Multiple `Task.detached` consumers can call into the same
+/// instance and the last one will no longer hang on CIContext contention.
 final class BWDocumentFilter {
 
-    private let ciContext: CIContext = {
-        if let device = MTLCreateSystemDefaultDevice() {
-            return CIContext(mtlDevice: device, options: [.cacheIntermediates: false])
-        }
-        return CIContext(options: [.cacheIntermediates: false])
-    }()
+    private let ciContext: CIContext
+    private let normalizeKernel: CIColorKernel?
+    private let squareKernel: CIColorKernel?
+    private let thresholdKernel: CIColorKernel?
+    private let lock = NSLock()
 
-    private lazy var thresholdKernel: CIColorKernel? = {
-        let src = """
+    init() {
+        if let device = MTLCreateSystemDefaultDevice() {
+            self.ciContext = CIContext(mtlDevice: device, options: [
+                .cacheIntermediates: false,
+                .workingColorSpace: CGColorSpaceCreateDeviceGray(),
+            ])
+        } else {
+            self.ciContext = CIContext(options: [
+                .cacheIntermediates: false,
+                .workingColorSpace: CGColorSpaceCreateDeviceGray(),
+            ])
+        }
+        self.normalizeKernel = CIColorKernel(source: """
+        kernel vec4 shadowNormalize(__sample lum, __sample bg) {
+            float v = clamp(lum.r / max(bg.r, 0.05), 0.0, 1.0);
+            return vec4(v, v, v, 1.0);
+        }
+        """)
+        self.squareKernel = CIColorKernel(source: """
+        kernel vec4 squarePixel(__sample x) {
+            float v = x.r * x.r;
+            return vec4(v, v, v, 1.0);
+        }
+        """)
+        self.thresholdKernel = CIColorKernel(source: """
         kernel vec4 sauvola(__sample lum, __sample mean, __sample meanSq, float k, float R) {
             float m = mean.r;
             float s2 = max(meanSq.r - m * m, 0.0);
@@ -30,12 +57,15 @@ final class BWDocumentFilter {
             float v = lum.r < t ? 0.0 : 1.0;
             return vec4(v, v, v, 1.0);
         }
-        """
-        return CIColorKernel(source: src)
-    }()
+        """)
+    }
 
     /// Apply the full pipeline. Returns the original image if any step fails.
+    /// Serialized — only one filter pipeline runs at a time per instance.
     func apply(to image: UIImage) -> UIImage {
+        lock.lock()
+        defer { lock.unlock() }
+
         guard let cgInput = cgImage(from: image) else { return image }
         let ci = CIImage(cgImage: cgInput)
         let extent = ci.extent
@@ -44,29 +74,28 @@ final class BWDocumentFilter {
         let lumFilter = CIFilter.colorControls()
         lumFilter.inputImage = ci
         lumFilter.saturation = 0.0
-        lumFilter.brightness = 0.0
-        lumFilter.contrast = 1.0
-        guard let lum = lumFilter.outputImage else { return image }
+        guard let lum = lumFilter.outputImage?.cropped(to: extent) else { return image }
 
-        // Stage 1: shadow normalization — large-radius box blur as background estimate.
+        // Stage 1: shadow normalization — large box-blur background estimate, then explicit divide.
         let shortSide = min(extent.width, extent.height)
         let shadowRadius = max(8.0, shortSide / 20.0)
-        guard let background = boxBlur(lum, radius: shadowRadius, extent: extent) else { return image }
-        guard let normalized = divide(lum, by: background, extent: extent) else { return image }
+        guard let background = boxBlur(lum, radius: shadowRadius, extent: extent),
+              let normalizeKernel,
+              let normalized = normalizeKernel.apply(extent: extent, arguments: [lum, background])
+        else { return image }
 
-        // Stage 2: Sauvola — local mean and local mean-of-squares over a ~21px window.
+        // Stage 2: Sauvola — local mean and local mean-of-squares.
         let sauvolaRadius = max(7.0, shortSide / 140.0)
-        guard let localMean = boxBlur(normalized, radius: sauvolaRadius, extent: extent) else { return image }
-        guard let squared = multiply(normalized, by: normalized, extent: extent) else { return image }
-        guard let localMeanSq = boxBlur(squared, radius: sauvolaRadius, extent: extent) else { return image }
-
-        guard let kernel = thresholdKernel else { return image }
-        let k: CGFloat = 0.34
-        let R: CGFloat = 0.5 // working in 0..1 luminance space, so R is half the dynamic range
-        guard let thresholded = kernel.apply(
-            extent: extent,
-            arguments: [normalized, localMean, localMeanSq, k, R]
-        ) else { return image }
+        guard let localMean = boxBlur(normalized, radius: sauvolaRadius, extent: extent),
+              let squareKernel,
+              let squared = squareKernel.apply(extent: extent, arguments: [normalized]),
+              let localMeanSq = boxBlur(squared, radius: sauvolaRadius, extent: extent),
+              let thresholdKernel,
+              let thresholded = thresholdKernel.apply(
+                  extent: extent,
+                  arguments: [normalized, localMean, localMeanSq, CGFloat(0.34), CGFloat(0.5)]
+              )
+        else { return image }
 
         guard let cgOut = ciContext.createCGImage(thresholded, from: extent) else { return image }
         return UIImage(cgImage: cgOut, scale: image.scale, orientation: image.imageOrientation)
@@ -79,29 +108,6 @@ final class BWDocumentFilter {
         filter.inputImage = image.clampedToExtent()
         filter.radius = Float(radius)
         return filter.outputImage?.cropped(to: extent)
-    }
-
-    private func divide(_ a: CIImage, by b: CIImage, extent: CGRect) -> CIImage? {
-        // CIDivideBlendMode: result = base / blend (per spec docs). We treat `a` as foreground,
-        // `b` as background. Output is then scaled towards white.
-        let blend = CIFilter.divideBlendMode()
-        blend.inputImage = a
-        blend.backgroundImage = b
-        guard let out = blend.outputImage?.cropped(to: extent) else { return nil }
-        // Slight gain so the page background sits near ~0.92 rather than blowing out.
-        let gain = CIFilter.colorControls()
-        gain.inputImage = out
-        gain.brightness = 0.0
-        gain.contrast = 1.0
-        gain.saturation = 0.0
-        return gain.outputImage?.cropped(to: extent)
-    }
-
-    private func multiply(_ a: CIImage, by b: CIImage, extent: CGRect) -> CIImage? {
-        let blend = CIFilter.multiplyCompositing()
-        blend.inputImage = a
-        blend.backgroundImage = b
-        return blend.outputImage?.cropped(to: extent)
     }
 
     private func cgImage(from image: UIImage) -> CGImage? {

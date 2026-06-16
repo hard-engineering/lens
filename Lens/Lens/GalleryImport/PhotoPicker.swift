@@ -1,10 +1,12 @@
 import SwiftUI
 import PhotosUI
 import UIKit
+import ImageIO
+import UniformTypeIdentifiers
 
 struct PhotoPicker: UIViewControllerRepresentable {
     let selectionLimit: Int
-    let onPicked: ([UIImage]) -> Void
+    let onPicked: ([NSItemProvider]) -> Void
     let onCancel: () -> Void
 
     func makeUIViewController(context: Context) -> PHPickerViewController {
@@ -23,11 +25,48 @@ struct PhotoPicker: UIViewControllerRepresentable {
         Coordinator(onPicked: onPicked, onCancel: onCancel)
     }
 
+    /// Loads a picked photo as a downsampled UIImage. Uses
+    /// `CGImageSourceCreateThumbnailAtIndex` so the full-resolution pixels
+    /// are never materialized in memory — critical for HDR / panorama /
+    /// high-MP iPhone photos that would otherwise decode to hundreds of MB.
+    ///
+    /// `maxPixelSize` is the longest-side cap. 3000 covers 300 DPI A4
+    /// (~2500×3500) with margin and keeps RAM under ~36 MB per image.
+    static func loadDownsampled(provider: NSItemProvider, maxPixelSize: Int = 3000) async -> UIImage? {
+        let data: Data? = await withCheckedContinuation { continuation in
+            let typeID = UTType.image.identifier
+            guard provider.hasItemConformingToTypeIdentifier(typeID) else {
+                continuation.resume(returning: nil)
+                return
+            }
+            _ = provider.loadDataRepresentation(forTypeIdentifier: typeID) { data, _ in
+                continuation.resume(returning: data)
+            }
+        }
+        guard let data else { return nil }
+
+        return await Task.detached(priority: .userInitiated) { () -> UIImage? in
+            guard let src = CGImageSourceCreateWithData(data as CFData, [
+                kCGImageSourceShouldCache: false,
+            ] as CFDictionary) else { return nil }
+            let options: [CFString: Any] = [
+                kCGImageSourceCreateThumbnailFromImageAlways: true,
+                kCGImageSourceCreateThumbnailWithTransform: true,
+                kCGImageSourceShouldCacheImmediately: true,
+                kCGImageSourceThumbnailMaxPixelSize: maxPixelSize,
+            ]
+            guard let cg = CGImageSourceCreateThumbnailAtIndex(src, 0, options as CFDictionary) else {
+                return nil
+            }
+            return UIImage(cgImage: cg)
+        }.value
+    }
+
     final class Coordinator: NSObject, PHPickerViewControllerDelegate {
-        let onPicked: ([UIImage]) -> Void
+        let onPicked: ([NSItemProvider]) -> Void
         let onCancel: () -> Void
 
-        init(onPicked: @escaping ([UIImage]) -> Void, onCancel: @escaping () -> Void) {
+        init(onPicked: @escaping ([NSItemProvider]) -> Void, onCancel: @escaping () -> Void) {
             self.onPicked = onPicked
             self.onCancel = onCancel
         }
@@ -37,23 +76,9 @@ struct PhotoPicker: UIViewControllerRepresentable {
                 onCancel()
                 return
             }
-
-            let group = DispatchGroup()
-            var collected = Array<UIImage?>(repeating: nil, count: results.count)
-            for (index, result) in results.enumerated() {
-                let provider = result.itemProvider
-                guard provider.canLoadObject(ofClass: UIImage.self) else { continue }
-                group.enter()
-                provider.loadObject(ofClass: UIImage.self) { object, _ in
-                    defer { group.leave() }
-                    if let image = object as? UIImage {
-                        collected[index] = image
-                    }
-                }
-            }
-            group.notify(queue: .main) { [onPicked] in
-                onPicked(collected.compactMap { $0 })
-            }
+            // Hand back the lightweight providers immediately; decoding happens
+            // on demand in GalleryImportFlow so we never hold all images at once.
+            onPicked(results.map { $0.itemProvider })
         }
     }
 }

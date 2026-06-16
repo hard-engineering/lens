@@ -7,51 +7,92 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		78522D6678A45C1397F5867A /* LensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B247FDFD58F53A2B6B23E9F /* LensApp.swift */; };
-		AED56552F9FA5A2C886A5A63 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9968D7C7259BD819E242F /* RootCoordinator.swift */; };
-		B943C0195F025567B62C4BA6 /* ScannedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B267062BF513CA1A22912 /* ScannedPage.swift */; };
-		2E2561C7641F5B048D0DD6AD /* ScanState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B2240855DF55B8A86B390C /* ScanState.swift */; };
-		6DA3DD68116B5206AF3DAA70 /* BWDocumentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD52678C8645C23B2B72328 /* BWDocumentFilter.swift */; };
-		70F2FB36903B5ED8AB342321 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0128227BD0955B080EC9717 /* OCRService.swift */; };
-		E11E3896CF095E31B22C30F6 /* PDFBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E551E276117599A9921F69B /* PDFBuilder.swift */; };
-		EF284504E0D9565D98E3E85A /* ScannerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF00261A0855D89AE933AD /* ScannerSheet.swift */; };
-		6762A6D1F4F7504F88EB38EB /* IntermediateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5E4475BE0A544AA0A89183 /* IntermediateView.swift */; };
+		12C8F6D9172E5B1E94E9531F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2226ACA9DD1A59E6A4E989A0 /* Assets.xcassets */; };
 		147081F4FB425C93A5737458 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF20C8342F975AFFB01CA19B /* ReviewView.swift */; };
-		5C193DBF78DC5DAB86F795AD /* PageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E5342DD9105B05975A4247 /* PageRowView.swift */; };
-		8E8E4FF6864B5C2EADB36B79 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD22F60852569AAC0F49EE /* PhotoPicker.swift */; };
-		6D6F93F4EDAC5961B52AF89B /* DocumentDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CDDD574F6D590C9AD029EE /* DocumentDetector.swift */; };
+		2BF6304E14FD5A01AD4E3ABF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6465D88374AD53348A53ABDE /* Preview Assets.xcassets */; };
+		2E2561C7641F5B048D0DD6AD /* ScanState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B2240855DF55B8A86B390C /* ScanState.swift */; };
 		2EFF9D8039C55A7B9AAAB07D /* PerspectiveWarp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A01DD8D03152079A703369 /* PerspectiveWarp.swift */; };
 		3C435B871FA05BF8A8B1ADCD /* CornerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A927181A08A252BBA5E84A39 /* CornerEditor.swift */; };
+		5C193DBF78DC5DAB86F795AD /* PageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E5342DD9105B05975A4247 /* PageRowView.swift */; };
+		6762A6D1F4F7504F88EB38EB /* IntermediateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5E4475BE0A544AA0A89183 /* IntermediateView.swift */; };
+		6D6F93F4EDAC5961B52AF89B /* DocumentDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CDDD574F6D590C9AD029EE /* DocumentDetector.swift */; };
+		6DA3DD68116B5206AF3DAA70 /* BWDocumentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD52678C8645C23B2B72328 /* BWDocumentFilter.swift */; };
+		70F2FB36903B5ED8AB342321 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0128227BD0955B080EC9717 /* OCRService.swift */; };
+		78522D6678A45C1397F5867A /* LensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B247FDFD58F53A2B6B23E9F /* LensApp.swift */; };
+		8E8E4FF6864B5C2EADB36B79 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DD22F60852569AAC0F49EE /* PhotoPicker.swift */; };
+		A1000000000000000000000B1 /* PipelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000000A2 /* PipelineTests.swift */; };
+		A1000000000000000000000B2 /* shadow_doc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000000A3 /* shadow_doc.jpg */; };
+		A1000000000000000000000B3 /* angled_doc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000000A4 /* angled_doc.jpg */; };
+		AED56552F9FA5A2C886A5A63 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9968D7C7259BD819E242F /* RootCoordinator.swift */; };
+		B1000000000000000000000B1 /* LensUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000000A2 /* LensUITests.swift */; };
+		B943C0195F025567B62C4BA6 /* ScannedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B267062BF513CA1A22912 /* ScannedPage.swift */; };
 		CD4850F4247E56A6AB83450D /* GalleryImportFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C6289F18B15BEA89C35C75 /* GalleryImportFlow.swift */; };
-		12C8F6D9172E5B1E94E9531F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2226ACA9DD1A59E6A4E989A0 /* Assets.xcassets */; };
-		2BF6304E14FD5A01AD4E3ABF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6465D88374AD53348A53ABDE /* Preview Assets.xcassets */; };
+		E11E3896CF095E31B22C30F6 /* PDFBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E551E276117599A9921F69B /* PDFBuilder.swift */; };
+		EF284504E0D9565D98E3E85A /* ScannerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEF00261A0855D89AE933AD /* ScannerSheet.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A1000000000000000000000F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBAD81FE1D32553DA69E33BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35C1B980ACD15F4EB51A8C17;
+			remoteInfo = Lens;
+		};
+		B1000000000000000000000F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBAD81FE1D32553DA69E33BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35C1B980ACD15F4EB51A8C17;
+			remoteInfo = Lens;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		B37BEFAB764F5C4892C2CFD1 /* Lens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lens.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B247FDFD58F53A2B6B23E9F /* LensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensApp.swift; sourceTree = "<group>"; };
+		07A01DD8D03152079A703369 /* PerspectiveWarp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerspectiveWarp.swift; sourceTree = "<group>"; };
+		1B5E4475BE0A544AA0A89183 /* IntermediateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateView.swift; sourceTree = "<group>"; };
+		1E551E276117599A9921F69B /* PDFBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBuilder.swift; sourceTree = "<group>"; };
+		2226ACA9DD1A59E6A4E989A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2DD861F857C65C92B52C0661 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33F9968D7C7259BD819E242F /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		455B267062BF513CA1A22912 /* ScannedPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedPage.swift; sourceTree = "<group>"; };
+		4EEF00261A0855D89AE933AD /* ScannerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerSheet.swift; sourceTree = "<group>"; };
+		60DD22F60852569AAC0F49EE /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		6465D88374AD53348A53ABDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		72CDDD574F6D590C9AD029EE /* DocumentDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetector.swift; sourceTree = "<group>"; };
+		7B247FDFD58F53A2B6B23E9F /* LensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensApp.swift; sourceTree = "<group>"; };
+		96C6289F18B15BEA89C35C75 /* GalleryImportFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImportFlow.swift; sourceTree = "<group>"; };
+		A1000000000000000000000A2 /* PipelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineTests.swift; sourceTree = "<group>"; };
+		A1000000000000000000000A3 /* shadow_doc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shadow_doc.jpg; sourceTree = "<group>"; };
+		A1000000000000000000000A4 /* angled_doc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = angled_doc.jpg; sourceTree = "<group>"; };
+		A1000000000000000000000A5 /* LensTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E5342DD9105B05975A4247 /* PageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageRowView.swift; sourceTree = "<group>"; };
+		A927181A08A252BBA5E84A39 /* CornerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerEditor.swift; sourceTree = "<group>"; };
+		B1000000000000000000000A2 /* LensUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensUITests.swift; sourceTree = "<group>"; };
+		B1000000000000000000000A5 /* LensUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LensUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B37BEFAB764F5C4892C2CFD1 /* Lens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B2240855DF55B8A86B390C /* ScanState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanState.swift; sourceTree = "<group>"; };
 		BAD52678C8645C23B2B72328 /* BWDocumentFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWDocumentFilter.swift; sourceTree = "<group>"; };
 		C0128227BD0955B080EC9717 /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
-		1E551E276117599A9921F69B /* PDFBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBuilder.swift; sourceTree = "<group>"; };
-		4EEF00261A0855D89AE933AD /* ScannerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerSheet.swift; sourceTree = "<group>"; };
-		1B5E4475BE0A544AA0A89183 /* IntermediateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateView.swift; sourceTree = "<group>"; };
 		CF20C8342F975AFFB01CA19B /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
-		A5E5342DD9105B05975A4247 /* PageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageRowView.swift; sourceTree = "<group>"; };
-		60DD22F60852569AAC0F49EE /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
-		72CDDD574F6D590C9AD029EE /* DocumentDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetector.swift; sourceTree = "<group>"; };
-		07A01DD8D03152079A703369 /* PerspectiveWarp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerspectiveWarp.swift; sourceTree = "<group>"; };
-		A927181A08A252BBA5E84A39 /* CornerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerEditor.swift; sourceTree = "<group>"; };
-		96C6289F18B15BEA89C35C75 /* GalleryImportFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImportFlow.swift; sourceTree = "<group>"; };
-		2DD861F857C65C92B52C0661 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2226ACA9DD1A59E6A4E989A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6465D88374AD53348A53ABDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A1000000000000000000000D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6FC5BC629AE519E99221CBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1000000000000000000000D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,20 +102,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		87CA1541AD485A2290C1476B = {
-			isa = PBXGroup;
-			children = (
-				7CEAEFCED09656589E5621D4 /* Lens */,
-				44E331040E8456169519FB83 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
 		44E331040E8456169519FB83 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				B37BEFAB764F5C4892C2CFD1 /* Lens.app */,
+				A1000000000000000000000A5 /* LensTests.xctest */,
+				B1000000000000000000000A5 /* LensUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5A397854D05C599590044742 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				455B267062BF513CA1A22912 /* ScannedPage.swift */,
+				B3B2240855DF55B8A86B390C /* ScanState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		61B807AFBF7E5551B92F7F47 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				4EEF00261A0855D89AE933AD /* ScannerSheet.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		7838F9321AA6538793266CC2 /* GalleryImport */ = {
+			isa = PBXGroup;
+			children = (
+				60DD22F60852569AAC0F49EE /* PhotoPicker.swift */,
+				72CDDD574F6D590C9AD029EE /* DocumentDetector.swift */,
+				07A01DD8D03152079A703369 /* PerspectiveWarp.swift */,
+				A927181A08A252BBA5E84A39 /* CornerEditor.swift */,
+				96C6289F18B15BEA89C35C75 /* GalleryImportFlow.swift */,
+			);
+			path = GalleryImport;
+			sourceTree = "<group>";
+		};
+		7A689D2617F15904B0FEB2EA /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				1B5E4475BE0A544AA0A89183 /* IntermediateView.swift */,
+				CF20C8342F975AFFB01CA19B /* ReviewView.swift */,
+				A5E5342DD9105B05975A4247 /* PageRowView.swift */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		7CEAEFCED09656589E5621D4 /* Lens */ = {
@@ -96,13 +170,22 @@
 			path = Lens;
 			sourceTree = "<group>";
 		};
-		5A397854D05C599590044742 /* Model */ = {
+		840E7E42102A5A5B94DA3850 /* PDF */ = {
 			isa = PBXGroup;
 			children = (
-				455B267062BF513CA1A22912 /* ScannedPage.swift */,
-				B3B2240855DF55B8A86B390C /* ScanState.swift */,
+				1E551E276117599A9921F69B /* PDFBuilder.swift */,
 			);
-			path = Model;
+			path = PDF;
+			sourceTree = "<group>";
+		};
+		87CA1541AD485A2290C1476B = {
+			isa = PBXGroup;
+			children = (
+				7CEAEFCED09656589E5621D4 /* Lens */,
+				A1000000000000000000000C1 /* LensTests */,
+				B1000000000000000000000C1 /* LensUITests */,
+				44E331040E8456169519FB83 /* Products */,
+			);
 			sourceTree = "<group>";
 		};
 		91552864425C549BB49565F6 /* Filters */ = {
@@ -121,42 +204,30 @@
 			path = OCR;
 			sourceTree = "<group>";
 		};
-		840E7E42102A5A5B94DA3850 /* PDF */ = {
+		A1000000000000000000000C1 /* LensTests */ = {
 			isa = PBXGroup;
 			children = (
-				1E551E276117599A9921F69B /* PDFBuilder.swift */,
+				A1000000000000000000000A2 /* PipelineTests.swift */,
+				A1000000000000000000000C2 /* Resources */,
 			);
-			path = PDF;
+			path = LensTests;
 			sourceTree = "<group>";
 		};
-		61B807AFBF7E5551B92F7F47 /* Scanner */ = {
+		A1000000000000000000000C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4EEF00261A0855D89AE933AD /* ScannerSheet.swift */,
+				A1000000000000000000000A3 /* shadow_doc.jpg */,
+				A1000000000000000000000A4 /* angled_doc.jpg */,
 			);
-			path = Scanner;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		7A689D2617F15904B0FEB2EA /* Review */ = {
+		B1000000000000000000000C1 /* LensUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1B5E4475BE0A544AA0A89183 /* IntermediateView.swift */,
-				CF20C8342F975AFFB01CA19B /* ReviewView.swift */,
-				A5E5342DD9105B05975A4247 /* PageRowView.swift */,
+				B1000000000000000000000A2 /* LensUITests.swift */,
 			);
-			path = Review;
-			sourceTree = "<group>";
-		};
-		7838F9321AA6538793266CC2 /* GalleryImport */ = {
-			isa = PBXGroup;
-			children = (
-				60DD22F60852569AAC0F49EE /* PhotoPicker.swift */,
-				72CDDD574F6D590C9AD029EE /* DocumentDetector.swift */,
-				07A01DD8D03152079A703369 /* PerspectiveWarp.swift */,
-				A927181A08A252BBA5E84A39 /* CornerEditor.swift */,
-				96C6289F18B15BEA89C35C75 /* GalleryImportFlow.swift */,
-			);
-			path = GalleryImport;
+			path = LensUITests;
 			sourceTree = "<group>";
 		};
 		FE8B8AC41E275129B308A175 /* Preview Content */ = {
@@ -187,6 +258,41 @@
 			productReference = B37BEFAB764F5C4892C2CFD1 /* Lens.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A1000000000000000000000A1 /* LensTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1000000000000000000000E1 /* Build configuration list for PBXNativeTarget "LensTests" */;
+			buildPhases = (
+				A1000000000000000000000D1 /* Sources */,
+				A1000000000000000000000D3 /* Frameworks */,
+				A1000000000000000000000D2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1000000000000000000000F2 /* PBXTargetDependency */,
+			);
+			name = LensTests;
+			productName = LensTests;
+			productReference = A1000000000000000000000A5 /* LensTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B1000000000000000000000A1 /* LensUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1000000000000000000000E1 /* Build configuration list for PBXNativeTarget "LensUITests" */;
+			buildPhases = (
+				B1000000000000000000000D1 /* Sources */,
+				B1000000000000000000000D3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1000000000000000000000F2 /* PBXTargetDependency */,
+			);
+			name = LensUITests;
+			productName = LensUITests;
+			productReference = B1000000000000000000000A5 /* LensUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -199,6 +305,14 @@
 				TargetAttributes = {
 					35C1B980ACD15F4EB51A8C17 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					A1000000000000000000000A1 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 35C1B980ACD15F4EB51A8C17;
+					};
+					B1000000000000000000000A1 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 35C1B980ACD15F4EB51A8C17;
 					};
 				};
 			};
@@ -216,6 +330,8 @@
 			projectRoot = "";
 			targets = (
 				35C1B980ACD15F4EB51A8C17 /* Lens */,
+				A1000000000000000000000A1 /* LensTests */,
+				B1000000000000000000000A1 /* LensUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,9 +346,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1000000000000000000000D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000000B2 /* shadow_doc.jpg in Resources */,
+				A1000000000000000000000B3 /* angled_doc.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A1000000000000000000000D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000000B1 /* PipelineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1000000000000000000000D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1000000000000000000000B1 /* LensUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E636DF3FBB3F5B60AB2B9AA1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,7 +399,47 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A1000000000000000000000F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35C1B980ACD15F4EB51A8C17 /* Lens */;
+			targetProxy = A1000000000000000000000F1 /* PBXContainerItemProxy */;
+		};
+		B1000000000000000000000F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35C1B980ACD15F4EB51A8C17 /* Lens */;
+			targetProxy = B1000000000000000000000F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		424816A70E605C8780CBFD52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lens/Preview Content\"";
+				DEVELOPMENT_TEAM = 9MXC88C783;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Lens/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.nitin.lens;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		47C9DD7DFDE45B16B0D99064 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -321,6 +502,103 @@
 			};
 			name = Debug;
 		};
+		61FD6BA72E935809B825D303 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lens/Preview Content\"";
+				DEVELOPMENT_TEAM = 9MXC88C783;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Lens/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.nitin.lens;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A1000000000000000000000E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.local.lens.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lens.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lens";
+			};
+			name = Debug;
+		};
+		A1000000000000000000000E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.local.lens.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lens.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lens";
+			};
+			name = Release;
+		};
+		B1000000000000000000000E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.local.lens.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lens;
+			};
+			name = Debug;
+		};
+		B1000000000000000000000E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.local.lens.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lens;
+			};
+			name = Release;
+		};
 		B2B120F51D1E583E8568052D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -376,58 +654,6 @@
 			};
 			name = Release;
 		};
-		424816A70E605C8780CBFD52 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Lens/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Lens/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
-				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.local.lens;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		61FD6BA72E935809B825D303 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Lens/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Lens/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
-				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.local.lens;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -436,6 +662,24 @@
 			buildConfigurations = (
 				47C9DD7DFDE45B16B0D99064 /* Debug */,
 				B2B120F51D1E583E8568052D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1000000000000000000000E1 /* Build configuration list for PBXNativeTarget "LensTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000000E2 /* Debug */,
+				A1000000000000000000000E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1000000000000000000000E1 /* Build configuration list for PBXNativeTarget "LensUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1000000000000000000000E2 /* Debug */,
+				B1000000000000000000000E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

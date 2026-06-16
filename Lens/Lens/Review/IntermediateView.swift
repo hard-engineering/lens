@@ -22,7 +22,7 @@ struct IntermediateView: View {
             Spacer()
             VStack(spacing: 12) {
                 Button(action: onScan) {
-                    Label("Start Scan", systemImage: "camera")
+                    Label("Scan with Camera", systemImage: "camera")
                         .frame(maxWidth: .infinity, minHeight: 50)
                 }
                 .buttonStyle(.borderedProminent)
